@@ -1,0 +1,21 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1568876694728-451bbf694b83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80);">
+  <div class="container">
+    <h1>All my movie lists</h1>
+    <%= link_to ("<i class='fa-solid fa-plus'></i> Add new list").html_safe, new_list_path, class:"btn"%>
+  </div>
+</div>
+
+<div class="cards">
+  <% @lists.each do |list| %>
+    <%= link_to list_path(list), class:"name", :action => 'go' do %>
+    <div class="card-list">
+      <% if list.photo.attached? %>
+        <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+      <div class="card-list-infos">
+        <h3><%= list.name  %></h3>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
+</div>
